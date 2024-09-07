@@ -20,49 +20,48 @@ import {
 } from "@coinbase/onchainkit/wallet";
 import { useAccount } from "wagmi";
 import { type Token } from "@coinbase/onchainkit/token";
-import { Button, color, Flex, Text, VStack } from "@chakra-ui/react";
-import { truncateText } from "./libs/utils";
+import { Flex, VStack } from "@chakra-ui/react";
 import { setOnchainKitConfig } from "@coinbase/onchainkit";
-import { getTokens } from "@coinbase/onchainkit/api";
-import { useCallback, useEffect, useState } from "react";
+// import { getTokens } from "@coinbase/onchainkit/api";
+// import { useCallback, useEffect, useState } from "react";
 
 export default function SwapComponents() {
   const API_KEY = import.meta.env.VITE_PUBLIC_ONCHAINKIT_API_KEY;
 
-  const [tokenSelect, setTokensSelect] = useState<Token[]>([]);
+  //   const [tokenSelect, setTokensSelect] = useState<Token[]>([]);
   const { address } = useAccount();
   setOnchainKitConfig({ apiKey: API_KEY });
 
-  const handleGetTokens = async () => {
-    const tokens = await getTokens();
-    console.log(tokens);
-  };
+  //   const handleGetTokens = async () => {
+  //     const tokens = await getTokens();
+  //     console.log(tokens);
+  //   };
 
-  useEffect(() => {
-    const fetchTokens = async () => {
-      const tokens = await getTokens();
-      if ("error" in tokens) {
-        console.error(tokens.error); // Handle the error appropriately
-        return; // Exit if there's an error
-      }
-      setTokensSelect(tokens); // Assuming you want to set the first token
-    };
+  //   useEffect(() => {
+  //     const fetchTokens = async () => {
+  //       const tokens = await getTokens();
+  //       if ("error" in tokens) {
+  //         console.error(tokens.error); // Handle the error appropriately
+  //         return; // Exit if there's an error
+  //       }
+  //       setTokensSelect(tokens); // Assuming you want to set the first token
+  //     };
 
-    fetchTokens();
-  }, []);
+  //     fetchTokens();
+  //   }, []);
 
-  const handleChange = useCallback((value: string) => {
-    const getData = async (value: string) => {
-      const response = await getTokens({ search: value });
-      if ("error" in response) {
-        console.error(response.error); // Handle the error appropriately
-        return;
-      }
-      const tokens: Token[] = response; // Ensure response is of type Token[]
-      setTokensSelect(tokens);
-    };
-    getData(value);
-  }, []);
+  //   const handleChange = useCallback((value: string) => {
+  //     const getData = async (value: string) => {
+  //       const response = await getTokens({ search: value });
+  //       if ("error" in response) {
+  //         console.error(response.error); // Handle the error appropriately
+  //         return;
+  //       }
+  //       const tokens: Token[] = response; // Ensure response is of type Token[]
+  //       setTokensSelect(tokens);
+  //     };
+  //     getData(value);
+  //   }, []);
 
   //   --------this mappes list of token to be swappable-----------
 
